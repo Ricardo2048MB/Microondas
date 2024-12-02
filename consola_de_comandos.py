@@ -1,4 +1,5 @@
 import cmd
+import time
 
 class Microondas(cmd.Cmd):
     intro = 'Bienvenido al microondas. Escribe "help" para ver los comandos disponibles.'
@@ -7,9 +8,16 @@ class Microondas(cmd.Cmd):
     def do_calentar(self, line):
         "Calienta la comida por el tiempo especificado en segundos."
         try:
-            tiempo = int(line)
-            print(f"Calentando por {tiempo} segundos...")
-            # Aquí podrías agregar lógica para simular el calentamiento
+            tiempo_segundos = int(line)
+            minutos, segundos = divmod(tiempo_segundos, 60)
+            
+            while minutos >= 0 and segundos >= 0:
+                print(f"{minutos:02d}:{segundos:02d}", end='\r')  # Imprime y regresa al inicio de la línea
+                time.sleep(1)  # Espera 1 segundo
+                segundos -= 1
+                if segundos < 0:
+                    minutos -= 1
+                    segundos = 59
             print("¡Comida lista!")
         except ValueError:
             print("Por favor, ingresa un número entero para el tiempo.")
