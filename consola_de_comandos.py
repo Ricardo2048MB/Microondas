@@ -6,7 +6,14 @@ class Microondas(cmd.Cmd):
     prompt = '(microondas) '
 
     def do_calentar(self, line):
-        "Calienta la comida por el tiempo especificado en segundos."
+        """
+Calienta la comida por el tiempo especificado en segundos.
+        
+Sintaxis
+        
+calentar <segundos>
+        
+        """
         try:
             tiempo_segundos = int(line)
             minutos, segundos = divmod(tiempo_segundos, 60)
@@ -23,7 +30,13 @@ class Microondas(cmd.Cmd):
             print("Por favor, ingresa un número entero para el tiempo.")
 
     def do_descongelar(self, line):
-        "Descongela la comida por el tiempo especificado en segundos."
+        """
+Descongela la comida por el tiempo especificado en segundos.
+
+Sintaxis
+
+descongelar <segundos>
+        """
         try:
             tiempo_segundos = int(line)
             minutos, segundos = divmod(tiempo_segundos, 60)
